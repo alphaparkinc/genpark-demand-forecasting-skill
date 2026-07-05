@@ -1,0 +1,55 @@
+{
+  "name": "demand-forecasting-skill",
+  "version": "1.0.0",
+  "description": "Forecast product demand using historical sales data, seasonality patterns, and trend decomposition. Outputs weekly/monthly demand predictions and reorder recommendations.",
+  "author": "alphaparkinc",
+  "category": "analytics",
+  "tags": [
+    "forecasting",
+    "demand",
+    "inventory",
+    "seasonality",
+    "analytics"
+  ],
+  "inputs": {
+    "sales_history": {
+      "type": "array",
+      "description": "Historical sales: [{period, units_sold}] (weekly or monthly)."
+    },
+    "forecast_periods": {
+      "type": "integer",
+      "description": "Number of future periods to forecast.",
+      "default": 12
+    },
+    "lead_time_periods": {
+      "type": "integer",
+      "description": "Supplier lead time in periods.",
+      "default": 2
+    },
+    "safety_stock_factor": {
+      "type": "number",
+      "description": "Safety stock multiplier (default 1.5).",
+      "default": 1.5
+    }
+  },
+  "outputs": {
+    "forecast": {
+      "type": "array",
+      "description": "Predicted demand per future period."
+    },
+    "trend": {
+      "type": "string",
+      "description": "Detected trend: growing / stable / declining."
+    },
+    "seasonality_index": {
+      "type": "array",
+      "description": "Seasonality multipliers per period."
+    },
+    "reorder_recommendation": {
+      "type": "object",
+      "description": "When and how much to reorder."
+    }
+  },
+  "entrypoint": "client.py",
+  "example": "example_usage.py"
+}
